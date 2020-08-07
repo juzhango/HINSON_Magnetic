@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'Hinson' 
+ * Project: 'HinsonRS485' 
  * Target:  'Target 1' 
  */
 

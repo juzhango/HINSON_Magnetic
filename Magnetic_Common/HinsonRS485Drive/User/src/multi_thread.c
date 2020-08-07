@@ -1,8 +1,8 @@
 #include "TeamRobot_Drive.h"
 
-#include "AGV_Can1_Msg_Receive.h"
-#include "AGV_CANBUS_HINSON_MGS160N.h"
+#include "AGV_RS485_HINSON_MGS160N.h"
 #include "usart3_user.h"
+#include "rs485_user.h"
 
 
 
@@ -13,11 +13,10 @@ void thread_init()
 	LED_Init();
 	KEY_Init();
 	uart3_init(115200);
-	canopen.setup(CAN_125KBPS);
-	AGV_Can1_Msg_Receive_Init();
+	RS485_Init(115200);
 	
 	delay_ms(30);	//=== 等待总线
-	MGS160N_Init();
+	MGS160N_Choose_Init(MGS160N_CHOOSE_CENTRE);
 	
 }
 void thread_start()
@@ -27,11 +26,11 @@ void thread_start()
 		key_scan(0);
 		if(keydown_data==KEY0_DATA)
 		{		
-			printf("切换到了左岔路\r\n");
-			MGS160N_ReqLeftDiff();
+			printf("test running\r\n");
 			LED0=!LED0;			
 		}
-		printf("%d\r\n",MGS160N_Centre_Diff_MM);
+		
+		AGV_RS485_MGS160N_Loop();
 		delay_ms(30);
 	}
 }

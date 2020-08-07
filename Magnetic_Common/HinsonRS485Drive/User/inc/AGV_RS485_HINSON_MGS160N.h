@@ -10,9 +10,16 @@
              2.实时数据 供外部文件
   ******************************************************************************
   */
+
+
 #ifndef _HINSON_CNS_MGS_160N_H
 #define _HINSON_CNS_MGS_160N_H
-#include "TeamRobot_Drive.h"
+#include "common.h"
+#include "usart3.h"
+#include "stdbool.h"
+#include "stdint.h"
+#include "rs485_user.h"	
+#include "crc16.h"
 
 
 enum MGS160N_Init_Type

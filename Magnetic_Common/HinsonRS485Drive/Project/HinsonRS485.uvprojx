@@ -443,19 +443,24 @@
               <FilePath>..\User\src\multi_thread.c</FilePath>
             </File>
             <File>
-              <FileName>AGV_CANBUS_HINSON_MGS160N.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\src\AGV_CANBUS_HINSON_MGS160N.c</FilePath>
-            </File>
-            <File>
-              <FileName>AGV_Can1_Msg_Receive.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\src\AGV_Can1_Msg_Receive.c</FilePath>
-            </File>
-            <File>
               <FileName>usart3_user.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\src\usart3_user.c</FilePath>
+            </File>
+            <File>
+              <FileName>rs485_user.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\src\rs485_user.c</FilePath>
+            </File>
+            <File>
+              <FileName>crc16.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\src\crc16.c</FilePath>
+            </File>
+            <File>
+              <FileName>AGV_RS485_HINSON_MGS160N.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\src\AGV_RS485_HINSON_MGS160N.c</FilePath>
             </File>
           </Files>
         </Group>
