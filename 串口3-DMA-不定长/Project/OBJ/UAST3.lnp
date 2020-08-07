@@ -15,7 +15,7 @@
 ".\obj\stm32f4xx_fsmc.o"
 ".\obj\stm32f4xx_dma.o"
 ".\obj\common.o"
---strict --scatter ".\OBJ\UAST3.sct"
+--library_type=microlib --strict --scatter ".\OBJ\UAST3.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\LIST\UAST3.map" -o .\OBJ\UAST3.axf

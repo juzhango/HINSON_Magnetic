@@ -37,7 +37,6 @@
 .\obj\usart3.o: ..\STM32F4_FWLIB\inc\stm32f4xx_dac.h
 .\obj\usart3.o: ..\STM32F4_FWLIB\inc\stm32f4xx_dcmi.h
 .\obj\usart3.o: ..\STM32F4_FWLIB\inc\stm32f4xx_fsmc.h
+.\obj\usart3.o: D:\Keil_v5_29\ARM\ARMCC\Bin\..\include\stdbool.h
 .\obj\usart3.o: D:\Keil_v5_29\ARM\ARMCC\Bin\..\include\string.h
 .\obj\usart3.o: D:\Keil_v5_29\ARM\ARMCC\Bin\..\include\stdlib.h
-.\obj\usart3.o: ..\USER\LED\led.h
-.\obj\usart3.o: ..\USER\BEEP\beep.h

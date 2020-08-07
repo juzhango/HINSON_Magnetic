@@ -1,6 +1,4 @@
 .\obj\main.o: ..\Main\main.c
-.\obj\main.o: ..\USER\usart3\usart3.h
-.\obj\main.o: D:\Keil_v5_29\ARM\ARMCC\Bin\..\include\stdio.h
 .\obj\main.o: ..\Common\common.h
 .\obj\main.o: ..\Startup_config\stm32f4xx.h
 .\obj\main.o: ..\Startup_config\core_cm4.h
@@ -37,6 +35,9 @@
 .\obj\main.o: ..\STM32F4_FWLIB\inc\stm32f4xx_dac.h
 .\obj\main.o: ..\STM32F4_FWLIB\inc\stm32f4xx_dcmi.h
 .\obj\main.o: ..\STM32F4_FWLIB\inc\stm32f4xx_fsmc.h
+.\obj\main.o: ..\USER\usart3\usart3.h
+.\obj\main.o: D:\Keil_v5_29\ARM\ARMCC\Bin\..\include\stdio.h
+.\obj\main.o: D:\Keil_v5_29\ARM\ARMCC\Bin\..\include\stdbool.h
 .\obj\main.o: ..\USER\LED\led.h
 .\obj\main.o: ..\USER\BEEP\beep.h
 .\obj\main.o: ..\USER\LCD\lcd.h
