@@ -11,7 +11,7 @@
   *          
   *          4.通讯协议CANBUS，配置广播模式，广播间隔 35ms
   *          5.初始化函数，缺省设置接收位置数据
-  *          6.
+  *          6.必须接120欧终端电阻
   *          
   *          	
   ******************************************************************************
@@ -27,8 +27,8 @@ uint8_t MGS160N_REQ_RIGHT_Diff_CMD[MGS160N_REQ_LEN]={0x88, 0x02};
 
 bool MGS160N_Device_Running = true;//设备状态
 uint8_t MGS160N_Induction_Status = 0;//感应状态 4:右  2:中  1:左  0:无
-int8_t MGS160N_Centre_Diff_MM = 0;//当前选择磁条偏移距离(-70~70)
-
+int8_t MGS160N_Diff_MM = 0;//当前选择磁条偏移距离(-70~70)
+uint16_t MGS160N_KGL;
 
 
 /**
@@ -81,10 +81,13 @@ void Dispatch_MGS160N_Data(CanRxMsg msg)
 		
 		MGS160N_Induction_Status = rec_buf[1];
 		
-		MGS160N_Centre_Diff_MM = rec_buf[2]<<8 & 0xFF00;
-		MGS160N_Centre_Diff_MM |= rec_buf[3]; 
+		MGS160N_Diff_MM = rec_buf[2]<<8 & 0xFF00;
+		MGS160N_Diff_MM |= rec_buf[3]; 
 	}
 	else if(len==3){																//=== 开关量数据
+		MGS160N_KGL = rec_buf[2] & 0x0001;										//=== S16
+		MGS160N_KGL = (MGS160N_KGL<<8) | (rec_buf[1]);				//=== S15~S8
+		MGS160N_KGL = (MGS160N_KGL<<7) | (rec_buf[0] >> 1);		//=== S7~S1
 	}
 }
 

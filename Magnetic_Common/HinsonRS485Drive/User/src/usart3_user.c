@@ -47,9 +47,7 @@ void uart3_init(u32 bound)
 	USART_ClearFlag(USART3, USART_FLAG_TC);
 	
 	USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);         //开启相关中断
-#if USE_UART3_IDLE
-	USART_ITConfig(USART3, USART_IT_IDLE, ENABLE);         //开启相关中断
-#endif
+
 	//Usart1 NVIC 配置
   NVIC_InitStructure.NVIC_IRQChannel = USART3_IRQn;      //串口1中断通道
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=3;//抢占优先级3
@@ -78,18 +76,7 @@ void uart3SendChars(u8 *str, u16 strlen)
    do { uart3SendChar(*(str + k)); k++; }   //循环发送,直到发送完毕   
     while (k < strlen); 
 } 
-#if USE_UART3_IDLE
-void usar3_Receive_Data(u8 *buf, u8 *len)
-{
-	int i;
-	*len = uart3_rec_count;
-	for(i=0; i<uart3_rec_count; i++)
-	{
-		buf[i] = uart3_rec_cache[i];
-	}
-	uart3_rec_count = 0;
-}
-#else
+
 void usar3_Receive_Data(u8 *buf, u8 *len)
 {
 	u8 rxlen = uart3_rec_count;
@@ -107,7 +94,6 @@ void usar3_Receive_Data(u8 *buf, u8 *len)
 		uart3_rec_count = 0;		 //清零
 	}
 }
-#endif
 
 //串口1中断服务程序
 void USART3_IRQHandler(void)  
@@ -119,13 +105,6 @@ void USART3_IRQHandler(void)
 		uart3_rec_cache[uart3_rec_count] = rec_data;
 		uart3_rec_count++;
 	}
-#if USE_UART3_IDLE
-	else if(USART_GetITStatus(USART3, USART_IT_IDLE) != RESET)
-	{
-		rec_data = USART3->DR;
-		flag = 1;
-	}
-#endif	
 }
 
 

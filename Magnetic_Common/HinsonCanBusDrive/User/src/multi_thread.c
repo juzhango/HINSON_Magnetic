@@ -27,11 +27,11 @@ void thread_start()
 		key_scan(0);
 		if(keydown_data==KEY0_DATA)
 		{		
-			printf("切换到了左岔路\r\n");
+			printf("切换到了左岔路检测\r\n");
 			MGS160N_ReqLeftDiff();
 			LED0=!LED0;			
 		}
-		printf("%d\r\n",MGS160N_Centre_Diff_MM);
+		printf("%d\r\n",MGS160N_Diff_MM);
 		delay_ms(30);
 	}
 }

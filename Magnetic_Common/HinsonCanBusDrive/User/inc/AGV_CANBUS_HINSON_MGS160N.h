@@ -16,7 +16,7 @@
 
 extern bool MGS160N_Device_Running;//设备状态
 extern uint8_t MGS160N_Induction_Status;//感应状态 4:右  2:中  1:左  0:无
-extern int8_t MGS160N_Centre_Diff_MM;//当前选择磁条偏移距离(-70~70)
+extern int8_t MGS160N_Diff_MM;//当前选择磁条偏移距离(-70~70)
 
 
 

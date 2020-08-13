@@ -6,7 +6,6 @@
 
 //////////////////////////////////////////////////////////////////////////////////	 
 
-#define USE_UART3_IDLE  					0
 
 #define USART3_REC_NUM  			100  	//定义最大接收字节数 200
 extern u8 uart_byte_count;          //uart_byte_count要小于USART_REC_LEN

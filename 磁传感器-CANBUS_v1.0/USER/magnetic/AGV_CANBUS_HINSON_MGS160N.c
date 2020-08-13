@@ -4,12 +4,12 @@
   * @author  
   * @version V1.0
   * @date    2020-8-7
-  * @brief   兴颂磁传感器驱动 HINSON CNS-MGS-160N
+  * @brief   兴颂磁传感器驱动 HINSON CNS-MGS-160N，需要增加120欧终端电阻，否则无法正常通信
   *          1.测量单个长磁钉偏移距离范围 -70mm~70mm，有效范围-50mm~50mm。误差小于2mm。安装 20~53mm
   *          2.测量磁条有效范围-55mm~55mm，误差与安装是否平行有关，误差小于4mm。安装高度 13~40mm
   *          3.测量短磁钉  有效范围 -60~60 ，误差小于3mm 安装高度12~28mm
   *          
-  *          4.通讯协议CANBUS，配置广播模式，广播间隔 35ms
+  *          4.通讯协议CANBUS，配置广播模式，广播间隔 20ms
   *          5.初始化函数，缺省设置接收位置数据
   *          6.
   *          
@@ -28,6 +28,7 @@ uint8_t MGS160N_REQ_RIGHT_Diff_CMD[MGS160N_REQ_LEN]={0x88, 0x02};
 bool MGS160N_Device_Running = true;//设备状态
 uint8_t MGS160N_Induction_Status = 0;//感应状态 4:右  2:中  1:左  0:无
 int8_t MGS160N_Centre_Diff_MM = 0;//当前选择磁条偏移距离(-70~70)
+uint32_t MGS160N_KGL;
 
 /**
   * @brief  初始化传感器为接收中间岔路的位置数据
@@ -44,8 +45,6 @@ void MGS160N_Loop()
 {
 	
 }
-
-
 void MGS160N_ReqCentreDiff()
 {
 	// 地址+0x80 设置位置数据
@@ -82,12 +81,12 @@ void Dispatch_MGS160N_Data(CanRxMsg msg)
 	
 	if(len==4){  																	//===位置数据
 		
-		if(rec_buf[0] != 0) MGS160N_Device_Running = false;
-		else MGS160N_Device_Running = true;
+		if(rec_buf[0] != 0) MGS160N_Device_Running = false;	//=== 设备状态
+		else MGS160N_Device_Running = true;									
 		
-		MGS160N_Induction_Status = rec_buf[1];
+		MGS160N_Induction_Status = rec_buf[1];							//=== 设备感应状态
 		
-		MGS160N_Centre_Diff_MM = rec_buf[2]<<8 & 0xFF00;
+		MGS160N_Centre_Diff_MM = rec_buf[2]<<8 & 0xFF00;		//=== 磁偏移距离
 		MGS160N_Centre_Diff_MM |= rec_buf[3]; 
 	}
 	else if(len==3){																//=== 开关量数据
